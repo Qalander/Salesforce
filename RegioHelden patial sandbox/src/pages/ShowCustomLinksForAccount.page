@@ -1,0 +1,89 @@
+<!--
+/**
+ * Show custom links for account (for Service Console)
+ *
+ * @see https://interaktiv.jira.com/browse/RHCRM-78
+ * @author Marko Schmalenbach <marko@die-interaktiven.de>
+ * @since 2016-08-25
+ */
+-->
+<apex:page standardController="Case">
+
+    <script>    
+        function openNewWindow(url) {
+            window.open(url);
+            return false;
+        }    
+    </script>
+    
+    <style>
+        html, body {
+            height: 100%;
+        }
+        #link-container {
+            width: 100%;
+            height: 100%;
+            display: table;
+            text-align: center;
+        }
+        #link-container > #links {
+            display: table-cell;
+            vertical-align: middle;
+        }
+            
+        #links input {
+            display: inline-block;
+            margin-right: 5px;
+            font-size: 1.1em !important;
+            cursor: pointer;
+            border: 1px solid #e0e5ee;
+            box-shadow: none;
+            font-size: 12px;
+            height: auto;
+            outline: 0;
+            font-weight: normal;
+            font-family: 'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+            color: #0070d2;
+            text-align: center;
+            white-space: nowrap;    
+            background-color: #f4f5f7;
+            border-radius: 3px;
+            line-height: 24px;
+            padding: 0 9px;        
+        }
+        #links input:hover {    
+            background-color: #e7edf4 !important;
+        }    
+            
+        #links input:last-child {
+            margin-right: 0;
+        }
+    </style>   
+    
+    <apex:variable var="baseUrl" value="https://herocentral.de/customer/{!Case.AccountCustomerNo__c}" />
+    
+    <div id="link-container">
+        <div id="links">
+            
+            <apex:outputPanel rendered="{!Case.AccountCustomerNo__c != NULL}">
+                <input value="Allgemeine Informationen" type="button" onclick="return openNewWindow('{!baseUrl}')" />
+                <input value="Schnellübersicht" type="button" onclick="return openNewWindow('{!baseUrl}/flash')" />
+                <input value="Kampagnen" type="button" onclick="return openNewWindow('{!baseUrl}/campaigns')" />
+                <input value="Google AdWords" type="button" onclick="return openNewWindow('{!baseUrl}/producttype/1')" />
+                <input value="Marketing Webseite" type="button" onclick="return openNewWindow('{!baseUrl}/producttype/11')" />
+                <input value="Anrufmessung" type="button" onclick="return openNewWindow('{!baseUrl}/producttype/4')" />
+                <input value="SEO" type="button" onclick="return openNewWindow('{!baseUrl}/producttype/7')" />
+                <input value="Bannerwerbung" type="button" onclick="return openNewWindow('{!baseUrl}/producttype/13')" />
+                <input value="Buchhaltung" type="button" onclick="return openNewWindow('{!baseUrl}/accounting')" />
+                <input value="Tickets" type="button" onclick="return openNewWindow('{!baseUrl}/issues')" />
+                <input value="Reports" type="button" onclick="return openNewWindow('{!baseUrl}/reports_emails')" />
+            </apex:outputPanel>
+            
+            <apex:outputPanel rendered="{!Case.AccountCustomerNo__c == NULL}">
+                <em>No Customer No. available</em>
+            </apex:outputPanel>
+
+        </div>        
+    </div>
+
+</apex:page>

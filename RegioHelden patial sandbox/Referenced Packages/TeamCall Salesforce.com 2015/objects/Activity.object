@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>CallDisposition2__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field will be used if two-stage wrap-up codes are supported.
+The value of this field is related to the value of the Task&apos;s CallDisposition field or Event&apos;s ilinktcsf__CallDisposition__c field. So it can be considered as &quot;Sub-Wrap-up&quot; code.</description>
+        <externalId>false</externalId>
+        <label>CallDisposition2</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CallDisposition__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This custom field is created to have a similar field as Task CallDisposition-field.
+With this field we can store Call wrap-up codes if e.g. Events are used as Activities.</description>
+        <externalId>false</externalId>
+        <label>CallDisposition</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CallObject__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This custom field is created to have a similar field as Task CallObject-field.
+This field will be used to contain the acutal datetime, which will later serve to sort the queried latest activities.</description>
+        <externalId>false</externalId>
+        <label>CallObject</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CallTags__c</fullName>
+        <deprecated>false</deprecated>
+        <description>tags related to the activity&apos;s call.</description>
+        <externalId>false</externalId>
+        <label>Call tags</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CallType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This custom field is created to have a similar field as Task CallType-field.
+Here we can store the information about the call type inbound, outbound, etc.</description>
+        <externalId>false</externalId>
+        <label>CallType</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Inbound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outbound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>internal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>external</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Call_Duration_hh_mm_ss__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This formula converts the integer contained in the field &apos;CallDurationInSeconds&apos; to a text in the following format hh:mm:ss</description>
+        <externalId>false</externalId>
+        <formula>IF(MOD(FLOOR(CallDurationInSeconds/3600),24) &lt; 10, &quot;0&quot;+TEXT(MOD(FLOOR(CallDurationInSeconds/3600),24)),TEXT(MOD(FLOOR(CallDurationInSeconds/3600),24)))+&quot;:&quot;+
+IF(MOD(FLOOR(CallDurationInSeconds/60),60) &lt; 10, &quot;0&quot;+TEXT(MOD(FLOOR(CallDurationInSeconds/60),60)),TEXT(MOD(FLOOR(CallDurationInSeconds/60),60)))+&quot;:&quot;+
+IF(MOD(CallDurationInSeconds,60) &lt; 10, &quot;0&quot;+TEXT(MOD(CallDurationInSeconds,60)),TEXT(MOD(CallDurationInSeconds,60)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Call Duration (hh:mm:ss)</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Called__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Called phone number.</description>
+        <externalId>false</externalId>
+        <label>Called</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Caller__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The calling phone number.</description>
+        <externalId>false</externalId>
+        <label>Caller</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Duration_In_Seconds__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This custom field will contain the amount of seconds a call took. It can be used to store the call duration in seconds within a Salesforce Activity Object (such as Event), which don&apos;t include a standard field containing seconds.
+Indeed, Event objects contain the standard field &quot;DurationInMinutes&quot;, but because using OpenCTI saveLog we can only save AllDay Events, where this field is automatically filled with 1440. So we cannot use it.</description>
+        <externalId>false</externalId>
+        <label>Duration in seconds</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LastRedirecting__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Contains the transferring phone number..</description>
+        <externalId>false</externalId>
+        <label>Last Hop</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legible_Call_Duration__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This formula converts the integer contained in the custom field &apos;ilinktcsf__Duration_In_Seconds__c&apos; to a text with the following format hh:mm:ss</description>
+        <externalId>false</externalId>
+        <formula>IF(MOD(FLOOR(Duration_In_Seconds__c/3600),24) &lt; 10, &quot;0&quot;+TEXT(MOD(FLOOR(Duration_In_Seconds__c/3600),24)),TEXT(MOD(FLOOR(Duration_In_Seconds__c/3600),24)))+&quot;:&quot;+
+IF(MOD(FLOOR(Duration_In_Seconds__c/60),60) &lt; 10, &quot;0&quot;+TEXT(MOD(FLOOR(Duration_In_Seconds__c/60),60)),TEXT(MOD(FLOOR(Duration_In_Seconds__c/60),60)))+&quot;:&quot;+
+IF(MOD(Duration_In_Seconds__c,60) &lt; 10, &quot;0&quot;+TEXT(MOD(Duration_In_Seconds__c,60)),TEXT(MOD(Duration_In_Seconds__c,60)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Legible call duration</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This custom field is a picklist containing the same values as Task Status-field.
+This custom field can be used if the Activity to be saved is e.g. an Event.</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Answered</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UCID__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Universal Call ID</description>
+        <externalId>false</externalId>
+        <label>UCID</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>isTCSFTask__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The value of this field will serve to identify Tasks generated using &quot;TeamCall Salesforce.com&quot; Software from other Tasks.</description>
+        <externalId>false</externalId>
+        <label>is TCSF Task</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>isWrapupIncomplete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Used within ilink TeamCall Salesforce.com.
+And allows us to check if the wrap-up of the considered Activity was completed or not.</description>
+        <externalId>false</externalId>
+        <label>is Wrap-up Incomplete</label>
+        <type>Checkbox</type>
+    </fields>
+</CustomObject>

@@ -1,0 +1,40 @@
+<apex:page controller="CreateOpportunityController">
+    <apex:sectionHeader title="Neue Opportunity erstellen" />
+    <apex:pageMessages id="mymsg" />
+  <apex:form ><apex:pageBlock id="block" >
+  
+      <apex:pageblockSection columns="1" >
+      
+      <apex:pageBlockSectionItem >
+      Name<apex:actionRegion >
+      <apex:selectList value="{!wrap.Name}" multiselect="false" required="true" id="Name" label="Name">
+          <apex:selectOptions value="{!Names}" />
+           <apex:actionSupport event="onchange" rerender="block"
+                              status="status"/>
+      </apex:selectList>
+      </apex:actionRegion>
+      </apex:pageBlockSectionItem>
+      
+      <!--<apex:pageBlockSectionItem rendered="{!wrap.Name == 'WinBack geeignet'}">
+      Inhaber
+      <apex:selectList value="{!wrap.OwnerId}" multiselect="false" Label="Inhaber" >
+          <apex:selectOptions value="{!LocationLeader}" />
+      </apex:selectList>
+      </apex:pageBlockSectionItem>
+      <apex:pageBlockSectionItem rendered="{!wrap.Name == 'WinBack geeignet'}"/>-->
+      
+      <apex:pageBlockSectionItem >
+      Betrag
+      <apex:inputText label="Name" value="{!wrap.Budget}" Label="Budget"/>
+      </apex:pageBlockSectionItem>
+      
+      <apex:pageBlockSectionItem >
+      Info an Vertrieb
+      <apex:inputtextarea label="Name" value="{!wrap.Info}" Label="Info" required="true"/>
+      </apex:pageBlockSectionItem>
+      </apex:pageblockSection>
+      <apex:pageBlockButtons ><apex:commandButton value="Speichern" action="{!Save}"/></apex:pageBlockButtons>
+      
+      
+  </apex:pageBlock></apex:form>
+</apex:page>

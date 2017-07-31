@@ -1,0 +1,16 @@
+<apex:page >
+    <apex:sectionHeader title="Close Case"/>
+    <apex:form >
+    
+    <apex:pageBlock title="Case Information" tabStyle="Opportunity">
+        <apex:pageBlockButtons >
+        <apex:commandButton Value="Save"/>
+        <apex:commandButton Value="Cancel"/>
+        
+        </apex:pageBlockButtons>
+        
+        </apex:pageBlock>
+    
+    </apex:form>
+    
+</apex:page>

@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CallCenter xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <adapterUrl>https://cti.rh-office.de/CallControlWeb/</adapterUrl>
+    <customSettings>{&quot;reqSoftphoneHeight&quot;:&quot;500&quot;,&quot;reqUseApi&quot;:&quot;true&quot;,&quot;reqSoftphoneWidth&quot;:&quot;400&quot;}</customSettings>
+    <displayName>ilink Callcenter Sales</displayName>
+    <displayNameLabel>Display name</displayNameLabel>
+    <internalNameLabel>ilink Test Callcenter</internalNameLabel>
+    <sections>
+        <items>
+            <label>Adapter URL</label>
+            <name>reqAdapterUrl</name>
+            <value>https://cti.rh-office.de/CallControlWeb/</value>
+        </items>
+        <items>
+            <label>use API</label>
+            <name>reqUseApi</name>
+            <value>true</value>
+        </items>
+        <items>
+            <label>Softphone Height</label>
+            <name>reqSoftphoneHeight</name>
+            <value>500</value>
+        </items>
+        <items>
+            <label>Softphone Width</label>
+            <name>reqSoftphoneWidth</name>
+            <value>400</value>
+        </items>
+        <items>
+            <label>API Version</label>
+            <name>reqVersion</name>
+            <value>36.0</value>
+        </items>
+        <items>
+            <label>Callcenter Version</label>
+            <name>callcenterVersion</name>
+            <value>1.28</value>
+        </items>
+        <label>General Information</label>
+        <name>reqGeneralInfo</name>
+    </sections>
+    <sections>
+        <items>
+            <label>Outside Prefix</label>
+            <name>outsidePrefix</name>
+            <value>0</value>
+        </items>
+        <items>
+            <label>Long Distance Prefix</label>
+            <name>longDistPrefix</name>
+            <value>0</value>
+        </items>
+        <items>
+            <label>International Prefix</label>
+            <name>internationalPrefix</name>
+            <value>00</value>
+        </items>
+        <label>Dialing Options</label>
+        <name>dialingOptions</name>
+    </sections>
+    <sections>
+        <items>
+            <label>Code 1</label>
+            <name>wrapupCode0</name>
+            <value>Angenommen</value>
+        </items>
+        <items>
+            <label>Code 2</label>
+            <name>wrapupCode1</name>
+            <value>Nicht Angenommen</value>
+        </items>
+        <items>
+            <label>Code 3</label>
+            <name>wrapupCode2</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 4</label>
+            <name>wrapupCode3</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 5</label>
+            <name>wrapupCode4</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 6</label>
+            <name>wrapupCode5</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 7</label>
+            <name>wrapupCode6</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 8</label>
+            <name>wrapupCode7</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 9</label>
+            <name>wrapupCode8</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 10</label>
+            <name>wrapupCode9</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 11</label>
+            <name>wrapupCode10</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 12</label>
+            <name>wrapupCode11</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 13</label>
+            <name>wrapupCode12</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 14</label>
+            <name>wrapupCode13</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 15</label>
+            <name>wrapupCode14</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 16</label>
+            <name>wrapupCode15</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 17</label>
+            <name>wrapupCode16</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 18</label>
+            <name>wrapupCode17</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 19</label>
+            <name>wrapupCode18</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 20</label>
+            <name>wrapupCode19</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Mandatory Comment Codes</label>
+            <name>mandatoryCommentCodes</name>
+            <value>1,2</value>
+        </items>
+        <label>Wrapup codes inbound</label>
+        <name>wrapupCodesInbound</name>
+    </sections>
+    <sections>
+        <items>
+            <label>Code 1</label>
+            <name>wrapupCode0</name>
+            <value>Entscheider erreicht</value>
+        </items>
+        <items>
+            <label>Code 2</label>
+            <name>wrapupCode1</name>
+            <value>Entscheider erreicht - Zweitgespräch nach Unterlagen</value>
+        </items>
+        <items>
+            <label>Code 3</label>
+            <name>wrapupCode2</name>
+            <value>nicht erreicht - Entscheider nicht bekommen</value>
+        </items>
+        <items>
+            <label>Code 4</label>
+            <name>wrapupCode3</name>
+            <value>nicht erreicht - Anrufbeantworter</value>
+        </items>
+        <items>
+            <label>Code 5</label>
+            <name>wrapupCode4</name>
+            <value>nicht erreicht - Besetzt</value>
+        </items>
+        <items>
+            <label>Code 6</label>
+            <name>wrapupCode5</name>
+            <value>nicht erreicht - niemand anwesend</value>
+        </items>
+        <items>
+            <label>Code 7</label>
+            <name>wrapupCode6</name>
+            <value>kein Interesse / WV möglich</value>
+        </items>
+        <items>
+            <label>Code 8</label>
+            <name>wrapupCode7</name>
+            <value>kein Interesse / nicht mehr anrufen</value>
+        </items>
+        <items>
+            <label>Code 9</label>
+            <name>wrapupCode8</name>
+            <value>unqualifiziert</value>
+        </items>
+        <items>
+            <label>Code 10</label>
+            <name>wrapupCode9</name>
+            <value>Anschluss nicht erreichbar</value>
+        </items>
+        <items>
+            <label>Code 11</label>
+            <name>wrapupCode10</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 12</label>
+            <name>wrapupCode11</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 13</label>
+            <name>wrapupCode12</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 14</label>
+            <name>wrapupCode13</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 15</label>
+            <name>wrapupCode14</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 16</label>
+            <name>wrapupCode15</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 17</label>
+            <name>wrapupCode16</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 18</label>
+            <name>wrapupCode17</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 19</label>
+            <name>wrapupCode18</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Code 20</label>
+            <name>wrapupCode19</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Mandatory Comment Codes</label>
+            <name>mandatoryCommentCodes</name>
+            <value>1,2</value>
+        </items>
+        <label>Wrapup codes outbound</label>
+        <name>wrapupCodesOutbound</name>
+    </sections>
+    <sections>
+        <items>
+            <label>Save unanswered inbound</label>
+            <name>saveInboundUnansweredCall</name>
+            <value>true</value>
+        </items>
+        <items>
+            <label>Save unanswered outbound</label>
+            <name>saveOutboundUnansweredCall</name>
+            <value>true</value>
+        </items>
+        <label>Saving unanswered calls</label>
+        <name>unansweredCalls</name>
+    </sections>
+    <sections>
+        <items>
+            <label>Allow empty Wrap-up code</label>
+            <name>allowEmptyWrapupCode</name>
+            <value>false</value>
+        </items>
+        <label>Empty Wrap-up code allowed</label>
+        <name>emptyWrapupCodeAllowed</name>
+    </sections>
+    <sections>
+        <items>
+            <label>List 1</label>
+            <name>customSpeedDialNumber0</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>List 2</label>
+            <name>customSpeedDialNumber1</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>List 3</label>
+            <name>customSpeedDialNumber2</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>List 4</label>
+            <name>customSpeedDialNumber3</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>List 5</label>
+            <name>customSpeedDialNumber4</name>
+            <value xsi:nil="true"/>
+        </items>
+        <label>Custom Speed Dial numbers</label>
+        <name>customSpeedDialNumbers</name>
+    </sections>
+    <sections>
+        <items>
+            <label>Not Ready</label>
+            <name>agentNotReady</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Ready</label>
+            <name>agentReady</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Busy</label>
+            <name>agentBusy</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Working After Call</label>
+            <name>agentWorkingAfterCall</name>
+            <value xsi:nil="true"/>
+        </items>
+        <label>Timer settings and indicator</label>
+        <name>timerSettings</name>
+    </sections>
+    <sections>
+        <items>
+            <label>List 1</label>
+            <name>VDNCallingNumber0</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>List 2</label>
+            <name>VDNCallingNumber1</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>List 3</label>
+            <name>VDNCallingNumber2</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>List 4</label>
+            <name>VDNCallingNumber3</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>List 5</label>
+            <name>VDNCallingNumber4</name>
+            <value xsi:nil="true"/>
+        </items>
+        <label>VDN calling numbers</label>
+        <name>VDNCallingNumbers</name>
+    </sections>
+    <sections>
+        <items>
+            <label>Object name</label>
+            <name>activityObjectName</name>
+            <value>Task</value>
+        </items>
+        <label>Object type to save Activities</label>
+        <name>objectUsedToSaveActivity</name>
+    </sections>
+    <sections>
+        <items>
+            <label>wrap-up field name</label>
+            <name>wrapup1FieldName</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Sub wrap-up field name</label>
+            <name>wrapup2FieldName</name>
+            <value xsi:nil="true"/>
+        </items>
+        <label>Specific Wrap-up field names</label>
+        <name>wrapupSpecificFieldNames</name>
+    </sections>
+    <sections>
+        <items>
+            <label>Subject 1</label>
+            <name>subject0</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 2</label>
+            <name>subject1</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 3</label>
+            <name>subject2</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 4</label>
+            <name>subject3</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 5</label>
+            <name>subject4</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 6</label>
+            <name>subject5</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 7</label>
+            <name>subject6</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 8</label>
+            <name>subject7</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 9</label>
+            <name>subject8</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 10</label>
+            <name>subject9</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 11</label>
+            <name>subject10</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 12</label>
+            <name>subject11</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 13</label>
+            <name>subject12</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 14</label>
+            <name>subject13</name>
+            <value xsi:nil="true"/>
+        </items>
+        <items>
+            <label>Subject 15</label>
+            <name>subject14</name>
+            <value xsi:nil="true"/>
+        </items>
+        <label>Predefined subjects</label>
+        <name>predefinedSubjects</name>
+    </sections>
+    <version>36</version>
+</CallCenter>

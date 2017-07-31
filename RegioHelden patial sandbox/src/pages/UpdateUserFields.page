@@ -1,0 +1,12 @@
+<apex:page controller="UserController" sidebar="false" showHeader="false">
+    <apex:form >
+        <apex:pageBlock title="Daten bearbeiten für {!$User.FirstName}">
+            <apex:pageblockSection >
+                  <apex:inputField value="{!loggedInUser.HC_Key__c}" />
+             </apex:pageblockSection> 
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Speichern"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

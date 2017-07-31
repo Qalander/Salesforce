@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>CampaignName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Campaign name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Campaign name</inlineHelpText>
+        <label>Campaign Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Company</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Company</inlineHelpText>
+        <label>Company</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CreateDate__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Create Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>DateMined__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date mined</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date mined</inlineHelpText>
+        <label>Date Mined</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>EmailAddress__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Email address</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email address</inlineHelpText>
+        <label>Email Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EmailType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Email type</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email type:
+ - Parsed
+ - Inferred but not verified
+ - Inferred and verified</inlineHelpText>
+        <label>Email Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Parsed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inferred but not verified</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inferred and verified</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Existing_Timestamp__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Existing Timestamp</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Existing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Existing</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FirstName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>First Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>First Name</inlineHelpText>
+        <label>First Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LastName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Last Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last Name</inlineHelpText>
+        <label>Last Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LeadGnome_Modified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>LeadGnome Modified</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MobilePhone__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Mobile phone</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mobile phone</inlineHelpText>
+        <label>Mobile Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>New_Timestamp__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>New timestamp</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>New__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>New</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OOOEnd__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>OOO End</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>OOOReason__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>OOO Reason</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>OOOStart__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>OOO Start</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>OfficePhone__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Office phone</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Office phone</inlineHelpText>
+        <label>Office Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>ReferredBy__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Referred by contact 345</description>
+        <externalId>false</externalId>
+        <label>Referred by</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>ContactsReferred</relationshipLabel>
+        <relationshipName>ContactsReferred</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SFDC_CampaignID__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>SFDC Campaign</label>
+        <referenceTo>Campaign</referenceTo>
+        <relationshipLabel>Contacts</relationshipLabel>
+        <relationshipName>LGNContacts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Title__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Title</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Title</inlineHelpText>
+        <label>Title</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UpdateDate__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Lead&apos;s update/insert date.</description>
+        <externalId>false</externalId>
+        <label>Update Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+</CustomObject>

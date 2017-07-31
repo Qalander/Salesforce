@@ -1,0 +1,211 @@
+<apex:page standardController="Opportunity" standardStyleSheets="false" showHeader="false">
+<apex:form >
+    <apex:includeScript value="{!URLFOR($Resource.Bootstrap, '/jquery.min.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.Bootstrap, '/css/bootstrap.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.bootstrap_toggle, '/css/bootstrap2-toggle.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Bootstrap, '/js/bootstrap.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.bootstrap_toggle, '/js/bootstrap2-toggle.min.js')}" />
+    <script type="text/javascript">
+        var __sfdcSessionId = '{!GETSESSIONID()}';
+    </script>
+    <script src="../../soap/ajax/38.0/connection.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        window.onload = loadData;
+        var oldResult;
+        function loadData () {
+            $('#revocationReceived').change(function() {
+              var opp = new sforce.SObject("Opportunity");
+              opp.id = '{!Id}';
+              opp.Revocation_Received__c = $(this).prop('checked');
+              result = sforce.connection.update([opp]);
+              if (!result[0].getBoolean("success")) {
+                  errorMessage('Widerruf fehlgeschlagen', result[0]);
+              }
+              else {
+                  if($(this).prop('checked')) {
+                      $('#revocationFields').collapse('show');
+                      if($('[id$="revocationStates"]').val() != '' && $('#revocationResultFields').hasClass('collapse'))
+                          $('#revocationResultFields').collapse('show')
+                      else if($('[id$="revocationStates"]').val() == '')
+                          $('#revocationResultFields').collapse('hide');
+                  }
+                  else {
+                      $('#revocationFields').collapse('hide');
+                      $('#revocationResultFields').collapse('hide');
+                  }
+              }
+            });
+            $('#editState').click(function() {
+                var attr = $('[id$="revocationStates"]').attr('disabled');
+                if (typeof attr !== typeof undefined && attr !== false) {
+                    $('[id$="revocationStates"]').removeAttr('disabled')
+                    $(this).children('span').attr('class', 'glyphicon glyphicon-floppy-disk');
+                }
+                else {
+                    var state = $('[id$="revocationStates"]').val() == '' ? null : $('[id$="revocationStates"]').val();
+                    var opp = new sforce.SObject("Opportunity");
+                    opp.id = '{!Id}';
+                    opp.Revocation_State__c = state;
+                    result = sforce.connection.update([opp]);
+                    if (!result[0].getBoolean("success")) {
+                        $(this).attr('class', 'btn btn-danger');
+                        errorMessage('Speichern fehlgeschlagen', result[0]);
+                    }
+                    else {
+                        $('[id$="revocationStates"]').attr('disabled', 'disabled');
+                        if($('[id$="revocationStates"]').val() != '' && $('#revocationResultFields').hasClass('collapse'))
+                            $('#revocationResultFields').collapse('show')
+                        else if($('[id$="revocationStates"]').val() == '')
+                            $('#revocationResultFields').collapse('hide');  
+                        $(this).children('span').attr('class', 'glyphicon glyphicon-pencil');
+                    }
+                }
+            });
+            
+            $('#editDate').click(function() {
+                var attr = $('#revocationDate').attr('disabled');
+                if (typeof attr !== typeof undefined && attr !== false) {
+                    $('#revocationDate').removeAttr('disabled')
+                    $(this).children('span').attr('class', 'glyphicon glyphicon-floppy-disk');
+                }
+                else {
+                    var date = $('#revocationDate').val() == '' ? null : $('#revocationDate').val();
+                    var opp = new sforce.SObject("Opportunity");
+                    opp.id = '{!Id}';
+                    opp.Revocation_date__c = date;
+                    try {
+                        result = sforce.connection.update([opp]);
+                    }
+                    catch(exception) {
+                        errorMessage('Fehler im Datum', exception.faultstring);
+                    }
+                    if (!result[0].getBoolean("success")) {
+                        $(this).attr('class', 'btn btn-danger');
+                        errorMessage('Speichern fehlgeschlagen', result[0]);
+                    }
+                    else {
+                        $('#revocationDate').attr('disabled', 'disabled');                        
+                        $(this).children('span').attr('class', 'glyphicon glyphicon-pencil');
+                    }
+                }
+            });
+            
+            $('#recovationResult').on('input', function() {
+                $('#resultSave').attr('class', 'input-group-addon btn default');
+            });
+            $('#resultSave').click(function() {
+                var opp = new sforce.SObject("Opportunity");
+                opp.id = '{!Id}';
+                opp.Revocation_Result__c = $('#recovationResult').val() == '' ? null : $('#recovationResult').val();
+                result = sforce.connection.update([opp]);
+                if (!result[0].getBoolean("success")) {
+                    $('#resultSave').attr('class', 'input-group-addon btn danger');
+                    errorMessage('Speichern fehlgeschlagen', result[0]);
+                }
+                else {
+                    $('#resultSave').attr('class', 'input-group-addon btn success');
+                }
+                
+            });
+            
+            var state = {
+                startTime : new Date().getTime()
+            };
+            var oppCallback = {
+                onSuccess: layoutRevocationResults,
+                onFailure: queryFailed,
+                source: state
+            };
+            sforce.connection.query(
+                "SELECT Id,Revocation_Received__c,Revocation_date__c,Revocation_State__c,Revocation_Result__c FROM Opportunity WHERE Id = '{!Id}' LIMIT 1",
+                oppCallback
+            );
+        }
+        
+        function layoutRevocationResults(queryResult, source) {
+            if (queryResult.size > 0) {
+                var opp = queryResult.getArray('records')[0];
+                
+                if(opp.Revocation_Received__c == true || opp.Revocation_Received__c == 'true')
+                    $('#revocationReceived').bootstrapToggle('on');
+                
+                if(opp.Revocation_date__c == '' || opp.Revocation_date__c == null) {
+                    var today = new Date();                    
+                    $('#revocationDate').val(today.getUTCFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getUTCDate());                    
+                }
+                else
+                    $('#revocationDate').val(opp.Revocation_date__c);
+                oldResult = opp.Revocation_Result__c;
+                $('#recovationResult').text(oldResult);
+            }
+        }
+        
+        function queryFailed(error, source) {
+            errorMessage('Laden fehlgeschlagen', error);
+        }
+        
+        function errorMessage(header, message) {
+            $('#errorHeading').text(header);
+            $('#errorMessage').text(message);
+            $('#error').collapse('show');
+        }
+    </script>
+    <div class="row" style="max-width: 100%;">
+        <div class="alert alert-danger collapse" id="error">
+            <h4 id="errorHeading"></h4>
+            <p id="errorMessage"></p>
+        </div>
+    </div>
+    <div class="row" style="max-width: 100%;">
+        <div class="col-md-4">
+            <label style="display: block;" for="revocationReceived">
+                {!$ObjectType.Opportunity.Fields.Revocation_Received__c.Label}
+            </label>
+            <input type="checkbox" id="revocationReceived" data-toggle="toggle" data-on="Ja" data-off="Nein" data-onstyle="warning" data-offstyle="default" data-width="64" data-height="32" />
+        </div>
+        <div class="col-md-4 collapse" id="revocationFields">
+            <div class="form-group">
+                <label>
+                    {!$ObjectType.Opportunity.Fields.Revocation_date__c.Label}
+                </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <input type="text" id="revocationDate" disabled="disabled" class="form-control" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" id="editDate">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="revocationStates">
+                    {!$ObjectType.Opportunity.Fields.Revocation_State__c.Label}
+                </label>
+                <div class="input-group">
+                    <apex:inputField html-disabled="disabled" id="revocationStates" value="{!Opportunity.Revocation_State__c}" html-class="form-control"></apex:inputField>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" id="editState">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 collapse" id="revocationResultFields">
+            <div class="form-group">
+                <label for="recovationResult">
+                    {!$ObjectType.Opportunity.Fields.Revocation_Result__c.Label}
+                </label>
+                <div class="input-group">
+                    <textarea id="recovationResult" class="form-control" maxlength="255"></textarea>
+                    <span class="input-group-addon btn success" id="resultSave" style="-webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out;">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;
+                    </span>
+                </div>            
+            </div>
+        </div>
+    </div>
+</apex:form>
+</apex:page>
