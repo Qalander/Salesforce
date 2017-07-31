@@ -1,0 +1,192 @@
+<apex:page standardController="Account" standardStyleSheets="false" showHeader="false" >
+    <apex:form >
+        <apex:includeScript value="{!URLFOR($Resource.Bootstrap, '/jquery.min.js')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.Bootstrap, '/css/bootstrap.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Bootstrap, '/js/bootstrap.min.js')}" />
+        <script type="text/javascript">
+            var __sfdcSessionId = '{!GETSESSIONID()}';
+        </script>
+        <script src="../../soap/ajax/38.0/connection.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            window.onload = loadData;
+            
+            function loadData () {
+                var state = {
+                    startTime : new Date().getTime()
+                };
+                var accountCallback = {
+                    onSuccess: layoutAccountResults,
+                    onFailure: queryFailed,
+                    source: state
+                };
+                sforce.connection.query(
+                    "SELECT Id,OwnerId,Owner.FirstName,Owner.LastName,Owner.SmallPhotoUrl,Owner.CompanyName FROM Account WHERE Id = '{!Id}'",
+                    accountCallback
+                );
+            }
+            
+            function queryFailed(error, source) {
+                $('#output').html('An error has occurred: ' + error);
+            }
+            
+            function layoutAccountResults(queryResult, source) {
+                if (queryResult.size > 0) {
+                    var records = queryResult.getArray('records');
+                    for (var i = 0; i < records.length; i++) {
+                        
+                    
+                        var account = records[i];
+                        var ownerColor = '#337ab7';
+                        
+                        if(account.Owner.CompanyName != null) {
+                            if(account.Owner.CompanyName.startsWith('Omnea'))
+                                ownerColor = '#f84854';
+                            else if(account.Owner.CompanyName.startsWith('RegioHelden'))
+                                ownerColor = '#f28d00';
+                            else if(account.Owner.CompanyName.startsWith('Ströer'))
+                                ownerColor = '#08204c';
+                            else if(account.Owner.CompanyName.startsWith('TeleSales'))
+                                ownerColor = '#13aa4d';
+                            else
+                                ownerColor = '#337ab7';
+                        }
+                            
+                        var output = '';
+                        output += '<span id="owner' + account.OwnerId + '" >';
+                        output += '<img style="height: 15px;" src="' + account.Owner.SmallPhotoUrl + '" />';
+                        output += '</span>&nbsp';
+                        output += '<span style="font-weight: bold;">';
+                        output += '<a href="/' + account.OwnerId + '" style="color: ' + ownerColor + '">';
+                        output += account.Owner.FirstName + ' ' + account.Owner.LastName + '</a>';
+                        output += '</span>;&nbsp;';
+                    }
+                    $('#output').html(output);
+                }
+                var teamCallback = {
+                    onSuccess: layoutTeamResults,
+                    onFailure: queryFailed,
+                    source: source
+                };
+                sforce.connection.query(
+                    "SELECT Id,PhotoUrl,UserId,User.FirstName,User.LastName,TeamMemberRole FROM AccountTeamMember WHERE IsDeleted = false AND AccountId = '{!Id}'",
+                    teamCallback
+                );
+            }
+            
+            function layoutTeamResults (queryResult, source) {
+                if (queryResult.size > 0) {
+                    var output = '';
+                    //get the records array
+                    var records = queryResult.getArray('records');
+                    var first = true;
+                    for (var i = 0; i < records.length; i++) {
+                        var member = records[i];
+                                            
+                        if($('#owner' + member.Id).length) {
+                            
+                        }
+                        else {
+                            var memberColor = '#337ab7';
+                            
+                            switch(member.TeamMemberRole) {
+                                case 'Omnea':
+                                    memberColor = '#f84854';
+                                    break;
+                                case 'RegioHelden':
+                                    memberColor = '#f28d00';
+                                    break;
+                                case 'Ströer':
+                                    memberColor = '#08204c';
+                                    break;
+                                case 'TeleSales':
+                                    memberColor = '#13aa4d';
+                                    break;
+                                default:
+                                    memberColor = '#337ab7';
+                                    break;
+                            }
+                        
+                            output += '<span style="white-space: nowrap;">';
+                            output += '<span id="remove' + member.Id + '"';
+                            output += 'title="Hier klicken zum löschen"';
+                            output += 'onclick="remove(\'' + member.Id + '\',\'' + member.User.FirstName + ' ' + member.User.LastName + '\')">';
+                            output += '<img style="height: 15px;" src="' + member.PhotoUrl + '" />';
+                            output += '</span>&nbsp';
+                            output += '<span>';
+                            output += '<a style="color: ' + memberColor + '" href="/' + member.UserId + '" title="' + member.TeamMemberRole + '">';
+                            output += member.User.FirstName + ' ' + member.User.LastName;
+                            output += '</a>';
+                            output += '</span>;&nbsp;';
+                            output += '</span>';
+                        }
+                    }
+                    $('#output').html($('#output').html() + output);
+                    //$('*[title]').tooltip();
+                }
+            }
+            
+            function remove(id, name) {
+                var sureToDelete = confirm('Are you sure that you want to remove ' + name + ' from this Account?');
+                if(sureToDelete) {
+                    var deleteObj = new Array();
+                    deleteObj[0] = id;
+                    $(this).removeAttr('onclick');
+                    $('#remove' + id).parent().css('color', '#d1d1d1');
+                    var sr = sforce.connection.deleteIds(deleteObj);
+                    console.log(sr[0]);
+                    if(sr != null && sr.length > 0 && sr[0].success == 'true') {
+                        $('#remove' + id).parent().remove();
+                    }
+                }
+            }
+        </script>
+        <div style="padding-top: 3px;
+                    padding-bottom: 3px;
+                    color: #4a4a56;
+                    width: 36%;
+                    vertical-align: top;
+                    padding-right: 10px;
+                    padding-left: 2px;
+                    text-align: right;
+                    font-size: 75%;
+                    font-weight: bold;
+                    font-family: Arial,Helvetica,sans-serif;
+                    margin: 0;
+                    border-collapse: separate;
+                    border-spacing: 2px;
+                    background-repeat: repeat-x;
+                    background-position: left top;
+                    background-color: #fff;
+                    float: left;">
+        {!$ObjectType.Account.Fields.OwnerId.Label}
+        </div>
+        <div style="border-right-color: #fff;
+                    padding-top: 3px;
+                    padding-bottom: 3px;
+                    vertical-align: top;
+                    padding-left: 10px;
+                    text-align: left;
+                    color: #000;
+                    font-family: Arial,Helvetica,sans-serif;
+                    margin: 0;
+                    border-collapse: separate;
+                    border-spacing: 2px;
+                    background-repeat: repeat-x;
+                    background-position: left top;
+                    font-size: 75%;
+                    background-color: #fff;
+                    width: 64%;
+                    float: left;">
+            <div id="output" style="float: left; width: calc(100% - 76px);"></div>
+            <div style="float: right;">
+                <a class="btn btn-sm btn-default" target="_parent" href="/{!Id}/a?retURL=%2F{!Id}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a class="btn btn-sm btn-success" target="_parent" href="/opp/salesteaminsert.jsp?retURL=%2F{!Id}&id={!Id}">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>
+    </apex:form>
+</apex:page>
